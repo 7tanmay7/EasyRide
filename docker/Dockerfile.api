@@ -1,0 +1,16 @@
+# Dockerfile for EasyRide Node API Service
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package.json .
+COPY packages/ packages/
+COPY services/api/ services/api/
+COPY database/ database/
+
+RUN npm --prefix packages/config install && npm --prefix packages/config run build
+RUN npm --prefix packages/shared-types install && npm --prefix packages/shared-types run build
+RUN npm --prefix packages/validation install && npm --prefix packages/validation run build
+RUN npm --prefix services/api install && npm --prefix services/api run build
+
+EXPOSE 5000
+CMD ["npm", "--prefix", "services/api", "run", "start"]

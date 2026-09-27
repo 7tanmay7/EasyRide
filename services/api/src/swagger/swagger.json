@@ -1,0 +1,78 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "EasyRide Master Dispatch API",
+    "version": "1.0.0",
+    "description": "API Documentation for EasyRide Urban Mobility and Multi-Use Delivery Platform."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "Local API Server"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "User Authentication Login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "customer@easyride.com" },
+                  "password": { "type": "string", "example": "password123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login Successful" }
+        }
+      }
+    },
+    "/pricing/estimate": {
+      "post": {
+        "summary": "Calculate Price & Route Estimates for Services",
+        "responses": {
+          "200": { "description": "Fare estimates breakdown returned" }
+        }
+      }
+    },
+    "/bookings": {
+      "post": {
+        "summary": "Create Booking & Initiate Intelligent Dispatch Engine",
+        "responses": {
+          "201": { "description": "Booking Created and Searching Drivers" }
+        }
+      }
+    },
+    "/drivers/go-online": {
+      "post": {
+        "summary": "Set Driver Status to ONLINE",
+        "responses": {
+          "200": { "description": "Driver status updated" }
+        }
+      }
+    },
+    "/businesses/deliveries": {
+      "post": {
+        "summary": "Create Single or Multi Delivery Jobs for Business",
+        "responses": {
+          "201": { "description": "Delivery Jobs Created" }
+        }
+      }
+    },
+    "/analytics/overview": {
+      "get": {
+        "summary": "Get City Operations KPIs and Real-Time Overview",
+        "responses": {
+          "200": { "description": "KPI metrics returned" }
+        }
+      }
+    }
+  }
+}

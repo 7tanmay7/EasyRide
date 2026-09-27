@@ -1,0 +1,9 @@
+{
+  "cancellationModel": {
+    "accuracy": 0.8235,
+    "precision": 0.0593,
+    "recall": 0.0342,
+    "f1Score": 0.0434,
+    "rocAuc": 0.4715
+  }
+}

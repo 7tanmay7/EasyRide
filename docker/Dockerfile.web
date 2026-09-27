@@ -1,0 +1,17 @@
+# Dockerfile for EasyRide Web Frontend
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package.json .
+COPY packages/ packages/
+COPY apps/web/ apps/web/
+
+RUN npm --prefix packages/config install && npm --prefix packages/config run build
+RUN npm --prefix packages/shared-types install && npm --prefix packages/shared-types run build
+RUN npm --prefix packages/validation install && npm --prefix packages/validation run build
+RUN npm --prefix apps/web install && npm --prefix apps/web run build
+
+FROM nginx:alpine
+COPY --from=builder /app/apps/web/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
