@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "buildCommand": "npm --prefix packages/config run build && npm --prefix packages/shared-types run build && npm --prefix packages/validation run build && npm --prefix apps/web run build",
+  "outputDirectory": "apps/web/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://localhost:5000/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

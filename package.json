@@ -10,7 +10,7 @@
     "dev:web": "npm --prefix apps/web run dev",
     "dev:ml": "cd services/ml-service && python -m uvicorn main:app --reload --port 8001",
     "dev:dispatch": "cd services/dispatch-engine && python -m uvicorn main:app --reload --port 8002",
-    "build": "npm --prefix packages/shared-types run build && npm --prefix services/api run build && npm --prefix apps/web run build",
+    "build": "npm --prefix packages/config run build && npm --prefix packages/shared-types run build && npm --prefix packages/validation run build && npm --prefix apps/web run build",
     "seed": "node scripts/seed.js",
     "simulate": "node scripts/simulate.js"
   },
