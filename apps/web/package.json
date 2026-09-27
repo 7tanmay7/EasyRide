@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm --prefix ../../packages/config run build && npm --prefix ../../packages/shared-types run build && npm --prefix ../../packages/validation run build && tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
