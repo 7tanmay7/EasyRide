@@ -105,11 +105,11 @@ export const DriverDashboard = () => {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         {/* Left Column: Driver Controls & Dashboard */}
         <div className="lg:col-span-5 space-y-6">
           {/* Header & Online Switch */}
-          <div className="bg-white p-6 rounded-3xl border border-border shadow-xl flex items-center justify-between">
+          <div className="bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-extrabold text-foreground">Good day, Vikram</h2>
               <p className="text-xs text-slate-500 font-medium">Honda City • KA-01-AB-1234</p>
@@ -117,7 +117,7 @@ export const DriverDashboard = () => {
 
             <button
               onClick={toggleOnline}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-black text-xs shadow-md transition-transform active:scale-95 ${
+              className={`w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl font-black text-xs shadow-md transition-transform active:scale-95 ${
                 isOnline ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
               }`}
             >
@@ -126,22 +126,22 @@ export const DriverDashboard = () => {
           </div>
 
           {/* Earnings & Performance KPI Cards */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-              <span className="text-[10px] uppercase font-bold text-slate-500 block">Today's Earnings</span>
-              <span className="text-2xl font-black text-black">₹{earnings}</span>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-border shadow-sm">
+              <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Today's Earnings</span>
+              <span className="text-xl sm:text-2xl font-black text-black">₹{earnings}</span>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-              <span className="text-[10px] uppercase font-bold text-slate-500 block">Acceptance Rate</span>
-              <span className="text-2xl font-black text-emerald-600">94%</span>
+            <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-border shadow-sm">
+              <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Acceptance Rate</span>
+              <span className="text-xl sm:text-2xl font-black text-emerald-600">94%</span>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-              <span className="text-[10px] uppercase font-bold text-slate-500 block">Trips Today</span>
-              <span className="text-2xl font-black text-black">8</span>
+            <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-border shadow-sm">
+              <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Trips Today</span>
+              <span className="text-xl sm:text-2xl font-black text-black">8</span>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-              <span className="text-[10px] uppercase font-bold text-slate-500 block">Driver Utilization</span>
-              <span className="text-2xl font-black text-blue-600">72%</span>
+            <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-border shadow-sm">
+              <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Driver Utilization</span>
+              <span className="text-xl sm:text-2xl font-black text-blue-600">72%</span>
             </div>
           </div>
 
@@ -158,7 +158,7 @@ export const DriverDashboard = () => {
 
           {/* Active Job Controls */}
           {activeJob && (
-            <div className="bg-slate-900 text-white p-6 rounded-3xl space-y-4 shadow-2xl">
+            <div className="bg-slate-900 text-white p-4 sm:p-6 rounded-3xl space-y-4 shadow-2xl">
               <div className="flex justify-between items-center border-b border-slate-800 pb-3">
                 <span className="bg-emerald-500/20 text-emerald-400 font-bold text-xs px-2.5 py-1 rounded-full">{activeJob.status}</span>
                 <span className="text-xs font-semibold text-slate-400">Earning: ₹{Math.round(activeJob.fare.finalFare * 0.85)}</span>
@@ -206,7 +206,7 @@ export const DriverDashboard = () => {
         </div>
 
         {/* Right Column: Driver Map */}
-        <div className="lg:col-span-7 h-[600px] relative">
+        <div className="lg:col-span-7 h-[320px] sm:h-[450px] lg:h-[600px] relative">
           <InteractiveMap
             pickup={activeJob?.pickup}
             dropoff={activeJob?.dropoff}
@@ -216,13 +216,13 @@ export const DriverDashboard = () => {
 
           {/* Incoming Job Request Modal Popup */}
           {incomingRequest && (
-            <div className="absolute inset-x-4 bottom-4 bg-white p-6 rounded-3xl shadow-2xl border-2 border-black z-30 space-y-4">
+            <div className="absolute inset-x-2 sm:inset-x-4 bottom-2 sm:bottom-4 bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border-2 border-black z-30 space-y-4">
               <div className="flex justify-between items-center border-b border-border pb-3">
                 <span className="bg-black text-white font-bold text-xs px-3 py-1 rounded-full">New Job Offer</span>
                 <span className="text-xl font-black text-emerald-600">₹{incomingRequest.estimatedEarning}</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
                   <span className="text-slate-500 font-semibold block">Pickup</span>
                   <p className="font-bold text-black">{incomingRequest.pickup.address}</p>

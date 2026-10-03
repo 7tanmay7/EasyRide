@@ -22,8 +22,8 @@ export const TripsPage: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-        <h1 className="text-2xl font-black text-foreground tracking-tight">Your Trips & Delivery History</h1>
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+        <h1 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">Your Trips & Delivery History</h1>
 
         {loading ? (
           <div className="text-center py-12 text-slate-500 text-sm font-semibold">Loading your activity history...</div>
@@ -34,13 +34,13 @@ export const TripsPage: React.FC = () => {
         ) : (
           <div className="space-y-4">
             {trips.map((b) => (
-              <div key={b.id} className="bg-white p-5 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow space-y-3">
+              <div key={b.id} className="bg-white p-4 sm:p-5 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow space-y-3">
                 <div className="flex justify-between items-center border-b border-border pb-3">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="font-extrabold text-sm text-black">{b.serviceCategory}</span>
                     <span className="text-xs text-slate-400 font-mono">#{b.id}</span>
                   </div>
-                  <span className="text-base font-black text-black">₹{b.fare.finalFare}</span>
+                  <span className="text-base font-black text-black shrink-0">₹{b.fare.finalFare}</span>
                 </div>
 
                 <div className="space-y-1.5 text-xs">
@@ -58,9 +58,9 @@ export const TripsPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center text-[10px] text-slate-500 pt-1 font-medium">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-1 text-[10px] text-slate-500 pt-1 font-medium">
                   <span>{new Date(b.requestedAt).toLocaleString()}</span>
-                  <span className="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-bold">{b.status}</span>
+                  <span className="self-start sm:self-auto bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-bold">{b.status}</span>
                 </div>
               </div>
             ))}

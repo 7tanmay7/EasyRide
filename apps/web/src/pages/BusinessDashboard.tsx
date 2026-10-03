@@ -64,21 +64,21 @@ export const BusinessDashboard: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-border pb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-border pb-6">
           <div>
             <div className="flex items-center gap-2">
-              <Building2 className="w-6 h-6 text-black" />
-              <h1 className="text-2xl font-black tracking-tight text-foreground">Apex Quick Commerce Portal</h1>
+              <Building2 className="w-6 h-6 text-black shrink-0" />
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-foreground">Apex Quick Commerce Portal</h1>
             </div>
             <p className="text-xs text-slate-500 font-medium">B2B Delivery Dispatch & API Management</p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex overflow-x-auto no-scrollbar items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => setActiveTab('deliveries')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-initial px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 activeTab === 'deliveries' ? 'bg-black text-white' : 'bg-secondary text-slate-700 hover:bg-slate-200'
               }`}
             >
@@ -86,7 +86,7 @@ export const BusinessDashboard: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('csv')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-initial px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 activeTab === 'csv' ? 'bg-black text-white' : 'bg-secondary text-slate-700 hover:bg-slate-200'
               }`}
             >
@@ -94,7 +94,7 @@ export const BusinessDashboard: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('api')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-initial px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 activeTab === 'api' ? 'bg-black text-white' : 'bg-secondary text-slate-700 hover:bg-slate-200'
               }`}
             >
@@ -104,31 +104,31 @@ export const BusinessDashboard: React.FC = () => {
         </div>
 
         {/* Top KPI Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <div className="bg-white p-5 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Total Deliveries Today</span>
-            <span className="text-2xl font-black text-black">{stats.totalDeliveries}</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Total Deliveries</span>
+            <span className="text-xl sm:text-2xl font-black text-black">{stats.totalDeliveries}</span>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Active Dispatches</span>
-            <span className="text-2xl font-black text-blue-600">{stats.activeDeliveries}</span>
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Active Dispatches</span>
+            <span className="text-xl sm:text-2xl font-black text-blue-600">{stats.activeDeliveries}</span>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Completion Rate</span>
-            <span className="text-2xl font-black text-emerald-600">99.2%</span>
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Completion Rate</span>
+            <span className="text-xl sm:text-2xl font-black text-emerald-600">99.2%</span>
           </div>
-          <div className="bg-white p-5 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Avg Delivery Time</span>
-            <span className="text-2xl font-black text-black">{stats.avgDeliveryTimeMin} min</span>
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Avg Time</span>
+            <span className="text-xl sm:text-2xl font-black text-black">{stats.avgDeliveryTimeMin} min</span>
           </div>
         </div>
 
         {/* Main Content Area */}
         {activeTab === 'deliveries' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             {/* Create Single Delivery Form */}
-            <div className="lg:col-span-4 bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4">
-              <h3 className="font-extrabold text-lg text-foreground flex items-center gap-2">
+            <div className="lg:col-span-4 bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4">
+              <h3 className="font-extrabold text-base sm:text-lg text-foreground flex items-center gap-2">
                 <Plus className="w-4 h-4 text-emerald-600" /> Create Dispatch Job
               </h3>
 
@@ -168,10 +168,10 @@ export const BusinessDashboard: React.FC = () => {
             </div>
 
             {/* Delivery Jobs Table */}
-            <div className="lg:col-span-8 bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4">
-              <h3 className="font-extrabold text-lg text-foreground">Recent Delivery Orders</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
+            <div className="lg:col-span-8 bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4">
+              <h3 className="font-extrabold text-base sm:text-lg text-foreground">Recent Delivery Orders</h3>
+              <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+                <table className="w-full text-left text-xs min-w-[500px]">
                   <thead className="bg-secondary uppercase text-[10px] font-extrabold text-slate-500">
                     <tr>
                       <th className="p-3">Order Ref</th>
@@ -213,8 +213,8 @@ export const BusinessDashboard: React.FC = () => {
 
         {/* CSV Bulk Upload Simulator */}
         {activeTab === 'csv' && (
-          <div className="bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4 max-w-3xl">
-            <h3 className="font-extrabold text-lg text-foreground flex items-center gap-2">
+          <div className="bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4 max-w-3xl">
+            <h3 className="font-extrabold text-base sm:text-lg text-foreground flex items-center gap-2">
               <Upload className="w-4 h-4" /> Bulk CSV Delivery Dispatch
             </h3>
             <p className="text-xs text-slate-500">Paste delivery orders CSV format (order_id, pickup, drop, size, priority):</p>
@@ -226,7 +226,7 @@ export const BusinessDashboard: React.FC = () => {
             />
             <button
               onClick={() => alert('Bulk CSV uploaded! 2 delivery dispatches scheduled via EasyRide Dispatch Engine.')}
-              className="bg-black text-white px-6 py-3 rounded-xl font-bold text-xs"
+              className="w-full sm:w-auto bg-black text-white px-6 py-3 rounded-xl font-bold text-xs"
             >
               Process & Dispatch Bulk Orders
             </button>
@@ -235,18 +235,18 @@ export const BusinessDashboard: React.FC = () => {
 
         {/* API Credentials */}
         {activeTab === 'api' && (
-          <div className="bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4 max-w-3xl">
-            <h3 className="font-extrabold text-lg text-foreground flex items-center gap-2">
-              <Code2 className="w-4 h-4 text-blue-600" /> EasyRide B2B Dispatch API Key
+          <div className="bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4 max-w-3xl">
+            <h3 className="font-extrabold text-base sm:text-lg text-foreground flex items-center gap-2">
+              <Code2 className="w-4 h-4 text-blue-600 shrink-0" /> EasyRide B2B Dispatch API Key
             </h3>
-            <div className="bg-slate-900 text-slate-100 p-4 rounded-2xl space-y-2 font-mono text-xs">
-              <div className="flex justify-between items-center text-slate-400">
+            <div className="bg-slate-900 text-slate-100 p-4 rounded-2xl space-y-3 font-mono text-xs overflow-x-auto">
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-1 text-slate-400">
                 <span>API Endpoint:</span>
-                <span className="text-emerald-400">POST /api/v1/businesses/deliveries</span>
+                <span className="text-emerald-400 font-semibold break-all">POST /api/v1/businesses/deliveries</span>
               </div>
-              <div className="flex justify-between items-center text-slate-400">
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-1 text-slate-400">
                 <span>API Key Prefix:</span>
-                <span className="text-amber-400">er_live_apex01_4982****</span>
+                <span className="text-amber-400 font-semibold">er_live_apex01_4982****</span>
               </div>
             </div>
           </div>

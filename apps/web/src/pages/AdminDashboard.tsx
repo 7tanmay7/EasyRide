@@ -79,21 +79,21 @@ export const AdminDashboard: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8">
         {/* Operations Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-border pb-6">
           <div>
             <div className="flex items-center gap-2">
-              <Shield className="w-6 h-6 text-black" />
-              <h1 className="text-2xl font-black tracking-tight text-foreground">City Operations Command Center</h1>
+              <Shield className="w-6 h-6 text-black shrink-0" />
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-foreground">City Operations Command Center</h1>
             </div>
             <p className="text-xs text-slate-500 font-medium">Real-Time Dispatch Control Room • Bengaluru Metropolitan Region</p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 w-full md:w-auto">
             <button
               onClick={toggleSimulation}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs border transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-bold text-xs border transition-all shrink-0 ${
                 simulationRunning ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-secondary text-foreground border-border hover:bg-slate-200'
               }`}
             >
@@ -101,10 +101,10 @@ export const AdminDashboard: React.FC = () => {
               {simulationRunning ? 'Simulation RUNNING' : 'Start Live Simulation'}
             </button>
 
-            <div className="flex bg-slate-100 p-1 rounded-xl border border-border">
+            <div className="flex overflow-x-auto no-scrollbar bg-slate-100 p-1 rounded-xl border border-border w-full sm:w-auto shrink-0">
               <button
                 onClick={() => setActiveTab('live')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   activeTab === 'live' ? 'bg-black text-white' : 'text-slate-600 hover:text-black'
                 }`}
               >
@@ -112,7 +112,7 @@ export const AdminDashboard: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveTab('analytics')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   activeTab === 'analytics' ? 'bg-black text-white' : 'text-slate-600 hover:text-black'
                 }`}
               >
@@ -120,7 +120,7 @@ export const AdminDashboard: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveTab('ml')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   activeTab === 'ml' ? 'bg-black text-white' : 'text-slate-600 hover:text-black'
                 }`}
               >
@@ -131,50 +131,50 @@ export const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Top KPI Metrics Banner */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Active Trips</span>
-            <span className="text-xl font-black text-emerald-600">{overview.activeTrips}</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3">
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Active Trips</span>
+            <span className="text-lg sm:text-xl font-black text-emerald-600">{overview.activeTrips}</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Available Supply</span>
-            <span className="text-xl font-black text-black">{overview.availableDrivers}</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Supply</span>
+            <span className="text-lg sm:text-xl font-black text-black">{overview.availableDrivers}</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Requests Today</span>
-            <span className="text-xl font-black text-black">{overview.requestsToday}</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Requests</span>
+            <span className="text-lg sm:text-xl font-black text-black">{overview.requestsToday}</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Completed</span>
-            <span className="text-xl font-black text-black">{overview.completedTrips}</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Completed</span>
+            <span className="text-lg sm:text-xl font-black text-black">{overview.completedTrips}</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Cancellation</span>
-            <span className="text-xl font-black text-amber-600">{overview.cancellationRatePercent}%</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Cancelled</span>
+            <span className="text-lg sm:text-xl font-black text-amber-600">{overview.cancellationRatePercent}%</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Average ETA</span>
-            <span className="text-xl font-black text-black">{overview.averageEtaMin} min</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Avg ETA</span>
+            <span className="text-lg sm:text-xl font-black text-black">{overview.averageEtaMin}m</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Utilization</span>
-            <span className="text-xl font-black text-blue-600">{overview.driverUtilizationPercent}%</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Utilization</span>
+            <span className="text-lg sm:text-xl font-black text-blue-600">{overview.driverUtilizationPercent}%</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Revenue</span>
-            <span className="text-xl font-black text-black">₹{(overview.totalRevenue / 1000).toFixed(1)}k</span>
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-sm">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block truncate">Revenue</span>
+            <span className="text-lg sm:text-xl font-black text-black">₹{(overview.totalRevenue / 1000).toFixed(1)}k</span>
           </div>
         </div>
 
         {/* Live Operations Map Tab */}
         {activeTab === 'live' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8 h-[580px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+            <div className="lg:col-span-8 h-[340px] sm:h-[450px] lg:h-[580px]">
               <InteractiveMap zones={demandZones} drivers={onlineDrivers} className="h-full w-full rounded-3xl border border-border shadow-xl" />
             </div>
 
             {/* Zone Status Panel */}
-            <div className="lg:col-span-4 bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4 max-h-[580px] overflow-y-auto">
+            <div className="lg:col-span-4 bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4 max-h-[340px] sm:max-h-[580px] overflow-y-auto">
               <h3 className="font-extrabold text-base text-foreground border-b border-border pb-3">Demand & Supply Zones</h3>
               <div className="space-y-3">
                 {demandZones.map((z) => (
@@ -204,11 +204,11 @@ export const AdminDashboard: React.FC = () => {
 
         {/* Analytics Tab */}
         {activeTab === 'analytics' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Demand by Zone Bar Chart */}
-            <div className="bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4">
               <h3 className="font-extrabold text-base text-foreground">Demand vs Supply by Zone</h3>
-              <div className="h-64">
+              <div className="h-60 sm:h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={zoneChartData}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E5E5" />
@@ -223,9 +223,9 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             {/* Demand Over Time Line Chart */}
-            <div className="bg-white p-6 rounded-3xl border border-border shadow-xl space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-3xl border border-border shadow-xl space-y-4">
               <h3 className="font-extrabold text-base text-foreground">Intraday Demand Pattern</h3>
-              <div className="h-64">
+              <div className="h-60 sm:h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={demandData.length > 0 ? demandData : [{ time: '08:00', demand: 450, supply: 380 }]}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E5E5" />
@@ -243,17 +243,17 @@ export const AdminDashboard: React.FC = () => {
 
         {/* Data Science & ML Tab */}
         {activeTab === 'ml' && (
-          <div className="bg-white p-8 rounded-3xl border border-border shadow-xl space-y-6">
+          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-border shadow-xl space-y-6">
             <div className="flex items-center gap-3 border-b border-border pb-4">
-              <Cpu className="w-6 h-6 text-purple-600" />
+              <Cpu className="w-6 h-6 text-purple-600 shrink-0" />
               <div>
-                <h3 className="font-extrabold text-lg text-foreground">Machine Learning Intelligence & Prediction Models</h3>
+                <h3 className="font-extrabold text-base sm:text-lg text-foreground">Machine Learning Intelligence & Prediction Models</h3>
                 <p className="text-xs text-slate-500">Live Scikit-Learn & XGBoost Model Diagnostics</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-50 p-6 rounded-2xl border border-border space-y-2">
+              <div className="bg-slate-50 p-5 rounded-2xl border border-border space-y-2">
                 <h4 className="font-bold text-sm text-black">Cancellation Risk Model</h4>
                 <p className="text-xs text-slate-600">Random Forest Classifier evaluating distance, surge, duration, and zone DSR.</p>
                 <div className="pt-2 text-xs font-mono text-slate-700">
@@ -261,7 +261,7 @@ export const AdminDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-50 p-6 rounded-2xl border border-border space-y-2">
+              <div className="bg-slate-50 p-5 rounded-2xl border border-border space-y-2">
                 <h4 className="font-bold text-sm text-black">Driver Acceptance Model</h4>
                 <p className="text-xs text-slate-600">Predicts P(accept) for every dispatch candidate to maximize successful completions.</p>
                 <div className="pt-2 text-xs font-mono text-slate-700">
@@ -269,7 +269,7 @@ export const AdminDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-slate-50 p-6 rounded-2xl border border-border space-y-2">
+              <div className="bg-slate-50 p-5 rounded-2xl border border-border space-y-2">
                 <h4 className="font-bold text-sm text-black">Demand Forecasting Model</h4>
                 <p className="text-xs text-slate-600">Predicts 30-min and 60-min zone demand spikes to auto-trigger driver repositioning.</p>
                 <div className="pt-2 text-xs font-mono text-slate-700">

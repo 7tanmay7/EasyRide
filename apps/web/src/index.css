@@ -28,6 +28,15 @@
   background: #94a3b8;
 }
 
+/* Hide scrollbar utility for mobile touch scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Pulsing map status markers */
 @keyframes pulse-ring {
   0% {
@@ -47,3 +56,4 @@
 .map-driver-ping {
   animation: pulse-ring 2s infinite;
 }
+

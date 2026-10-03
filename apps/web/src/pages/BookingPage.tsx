@@ -157,12 +157,12 @@ export const BookingPage: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         {/* Left Column: Booking Controls & Active Trip Panel */}
         <div className="lg:col-span-5 space-y-6">
           {/* Active Trip Card when booking is in progress */}
           {activeBooking ? (
-            <div className="bg-white rounded-3xl p-6 border border-border shadow-xl space-y-6">
+            <div className="bg-white rounded-3xl p-4 sm:p-6 border border-border shadow-xl space-y-6">
               <div className="flex items-center justify-between border-b border-border pb-4">
                 <div>
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs">
@@ -181,9 +181,9 @@ export const BookingPage: React.FC = () => {
 
               {/* Driver Details Card */}
               {activeBooking.driver ? (
-                <div className="bg-slate-50 p-4 rounded-2xl border border-border flex items-center justify-between">
+                <div className="bg-slate-50 p-3.5 sm:p-4 rounded-2xl border border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center font-bold text-lg">
+                    <div className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center font-bold text-lg shrink-0">
                       {activeBooking.driver.user?.name.charAt(0)}
                     </div>
                     <div>
@@ -197,15 +197,15 @@ export const BookingPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <a href={`tel:${activeBooking.driver.user?.phone}`} className="p-2.5 bg-white border border-border rounded-xl hover:bg-slate-100">
+                  <div className="flex gap-2 w-full sm:w-auto justify-end">
+                    <a href={`tel:${activeBooking.driver.user?.phone}`} className="p-2.5 bg-white border border-border rounded-xl hover:bg-slate-100 flex items-center justify-center">
                       <Phone className="w-4 h-4 text-black" />
                     </a>
                   </div>
                 </div>
               ) : (
                 <div className="bg-amber-50 p-4 rounded-2xl border border-amber-200 flex items-center gap-3 text-amber-900">
-                  <div className="w-4 h-4 rounded-full border-2 border-amber-600 border-t-transparent animate-spin"></div>
+                  <div className="w-4 h-4 rounded-full border-2 border-amber-600 border-t-transparent animate-spin shrink-0"></div>
                   <p className="text-xs font-semibold">EasyRide Dispatch Engine searching top scored nearby drivers...</p>
                 </div>
               )}
@@ -213,14 +213,14 @@ export const BookingPage: React.FC = () => {
               {/* Route Summary */}
               <div className="space-y-3 text-xs">
                 <div className="flex items-start gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-black mt-1"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-black mt-1 shrink-0"></div>
                   <div>
                     <span className="font-bold text-slate-500 uppercase text-[10px] block">Pickup</span>
                     <p className="font-medium text-slate-800">{activeBooking.pickup.address}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <div className="w-2.5 h-2.5 bg-emerald-600 mt-1"></div>
+                  <div className="w-2.5 h-2.5 bg-emerald-600 mt-1 shrink-0"></div>
                   <div>
                     <span className="font-bold text-slate-500 uppercase text-[10px] block">Drop-off</span>
                     <p className="font-medium text-slate-800">{activeBooking.dropoff.address}</p>
@@ -229,14 +229,14 @@ export const BookingPage: React.FC = () => {
               </div>
 
               {/* Fare Summary */}
-              <div className="bg-secondary p-4 rounded-2xl flex justify-between items-center text-xs">
+              <div className="bg-secondary p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
                 <div>
                   <span className="text-slate-500 font-medium">Estimated Total</span>
                   <p className="text-xl font-black text-black">₹{activeBooking.fare.finalFare}</p>
                 </div>
                 <button
                   onClick={handleCancelBooking}
-                  className="px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-xl font-bold hover:bg-red-100 transition-colors"
+                  className="w-full sm:w-auto px-4 py-2.5 bg-red-50 text-red-600 border border-red-200 rounded-xl font-bold hover:bg-red-100 transition-colors"
                 >
                   Cancel Trip
                 </button>
@@ -244,56 +244,56 @@ export const BookingPage: React.FC = () => {
             </div>
           ) : (
             /* Booking Form Panel */
-            <div className="bg-white rounded-3xl p-6 border border-border shadow-xl space-y-6">
+            <div className="bg-white rounded-3xl p-4 sm:p-6 border border-border shadow-xl space-y-5">
               <h2 className="text-xl font-extrabold tracking-tight">Book a Service</h2>
 
               {/* Service Category Buttons */}
-              <div className="grid grid-cols-5 gap-1 p-1 bg-secondary rounded-xl text-center">
+              <div className="flex overflow-x-auto no-scrollbar sm:grid sm:grid-cols-5 gap-1.5 p-1.5 bg-secondary rounded-xl text-center">
                 <button
                   onClick={() => setSelectedServiceCategory('RIDE')}
-                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex flex-col items-center gap-1 ${
+                  className={`py-2 px-3 sm:px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center sm:flex-col gap-1.5 shrink-0 ${
                     selectedServiceCategory === 'RIDE' ? 'bg-black text-white shadow-sm' : 'text-slate-600 hover:text-black'
                   }`}
                 >
-                  <Car className="w-4 h-4" /> Ride
+                  <Car className="w-4 h-4 shrink-0" /> Ride
                 </button>
                 <button
                   onClick={() => setSelectedServiceCategory('PACKAGE')}
-                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex flex-col items-center gap-1 ${
+                  className={`py-2 px-3 sm:px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center sm:flex-col gap-1.5 shrink-0 ${
                     selectedServiceCategory === 'PACKAGE' ? 'bg-black text-white shadow-sm' : 'text-slate-600 hover:text-black'
                   }`}
                 >
-                  <Package className="w-4 h-4" /> Package
+                  <Package className="w-4 h-4 shrink-0" /> Package
                 </button>
                 <button
                   onClick={() => setSelectedServiceCategory('QUICK_COMMERCE')}
-                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex flex-col items-center gap-1 ${
+                  className={`py-2 px-3 sm:px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center sm:flex-col gap-1.5 shrink-0 ${
                     selectedServiceCategory === 'QUICK_COMMERCE' ? 'bg-black text-white shadow-sm' : 'text-slate-600 hover:text-black'
                   }`}
                 >
-                  <Zap className="w-4 h-4 text-amber-500" /> Delivery
+                  <Zap className="w-4 h-4 text-amber-500 shrink-0" /> Delivery
                 </button>
                 <button
                   onClick={() => setSelectedServiceCategory('BUSINESS')}
-                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex flex-col items-center gap-1 ${
+                  className={`py-2 px-3 sm:px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center sm:flex-col gap-1.5 shrink-0 ${
                     selectedServiceCategory === 'BUSINESS' ? 'bg-black text-white shadow-sm' : 'text-slate-600 hover:text-black'
                   }`}
                 >
-                  <Building2 className="w-4 h-4" /> Business
+                  <Building2 className="w-4 h-4 shrink-0" /> Business
                 </button>
                 <button
                   onClick={() => setSelectedServiceCategory('SERVICE')}
-                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex flex-col items-center gap-1 ${
+                  className={`py-2 px-3 sm:px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center sm:flex-col gap-1.5 shrink-0 ${
                     selectedServiceCategory === 'SERVICE' ? 'bg-black text-white shadow-sm' : 'text-slate-600 hover:text-black'
                   }`}
                 >
-                  <Wrench className="w-4 h-4" /> Service
+                  <Wrench className="w-4 h-4 shrink-0" /> Service
                 </button>
               </div>
 
               {/* Connected Address Form */}
               <div className="space-y-4">
-                <div className="relative pl-7 space-y-3">
+                <div className="relative pl-6 sm:pl-7 space-y-3">
                   <div className="absolute left-2.5 top-3.5 bottom-3.5 w-0.5 bg-slate-300 flex flex-col justify-between items-center">
                     <div className="w-2.5 h-2.5 rounded-full bg-black -ml-1"></div>
                     <div className="w-2.5 h-2.5 bg-emerald-600 -ml-1"></div>
@@ -332,21 +332,21 @@ export const BookingPage: React.FC = () => {
                       <div
                         key={est.serviceId}
                         onClick={() => setSelectedServiceId(est.serviceId)}
-                        className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
+                        className={`p-3 rounded-2xl border cursor-pointer transition-all flex items-center justify-between gap-3 ${
                           selectedServiceId === est.serviceId ? 'border-black bg-slate-50 shadow-sm' : 'border-border hover:bg-slate-50'
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center font-bold text-lg">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center font-bold text-lg shrink-0">
                             {est.serviceName.includes('Bike') ? '🛵' : est.serviceName.includes('Auto') ? '🛺' : '🚗'}
                           </div>
-                          <div>
-                            <h4 className="font-bold text-sm text-foreground">{est.serviceName}</h4>
-                            <p className="text-xs text-slate-500">{est.description} • ETA {est.etaMinutes} min</p>
+                          <div className="truncate">
+                            <h4 className="font-bold text-sm text-foreground truncate">{est.serviceName}</h4>
+                            <p className="text-xs text-slate-500 truncate">{est.description} • ETA {est.etaMinutes} min</p>
                           </div>
                         </div>
 
-                        <div className="text-right">
+                        <div className="text-right shrink-0">
                           <span className="text-base font-black text-black">₹{est.fareBreakdown.finalFare}</span>
                           {est.fareBreakdown.surgeMultiplier > 1.0 && (
                             <span className="block text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
@@ -372,7 +372,7 @@ export const BookingPage: React.FC = () => {
         </div>
 
         {/* Right Column: Live Route Map */}
-        <div className="lg:col-span-7 h-[600px]">
+        <div className="lg:col-span-7 h-[320px] sm:h-[450px] lg:h-[600px]">
           <InteractiveMap
             pickup={pickupLocation}
             dropoff={dropLocation}
@@ -383,10 +383,10 @@ export const BookingPage: React.FC = () => {
         </div>
       </main>
 
-      {/* FLOATING GENAI COPILOT BUTTON (Positioned bottom-left to avoid map controls) */}
+      {/* FLOATING GENAI COPILOT BUTTON */}
       <button
         onClick={() => setShowAiCopilot(!showAiCopilot)}
-        className="fixed bottom-6 left-6 bg-slate-900 text-white p-3.5 rounded-full shadow-2xl z-40 border border-slate-700 hover:scale-105 transition-transform flex items-center gap-2 font-bold text-xs"
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 bg-slate-900 text-white p-3 sm:p-3.5 rounded-full shadow-2xl z-40 border border-slate-700 hover:scale-105 transition-transform flex items-center gap-2 font-bold text-xs"
       >
         <Sparkles className="w-4 h-4 text-emerald-400 animate-pulse" />
         <span className="inline">GenAI Assistant</span>
@@ -394,7 +394,7 @@ export const BookingPage: React.FC = () => {
 
       {/* GENAI COPILOT MODAL */}
       {showAiCopilot && (
-        <div className="fixed bottom-20 left-6 w-80 max-w-[calc(100vw-3rem)] bg-white rounded-3xl shadow-2xl border border-border z-50 overflow-hidden flex flex-col">
+        <div className="fixed bottom-16 left-4 right-4 sm:right-auto sm:left-6 w-auto sm:w-80 max-w-full bg-white rounded-3xl shadow-2xl border border-border z-50 overflow-hidden flex flex-col">
           <div className="bg-slate-900 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-emerald-400" />
